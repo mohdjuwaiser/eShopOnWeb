@@ -17,9 +17,21 @@ namespace Microsoft.eShopWeb.Web.Services
 
         public async Task UpdateCatalogItem(CatalogItemViewModel viewModel)
         {
+<<<<<<< HEAD
             var existingCatalogItem = await _catalogItemRepository.GetByIdAsync(viewModel.Id);
             existingCatalogItem.UpdateDetails(viewModel.Name, existingCatalogItem.Description, viewModel.Price);
             await _catalogItemRepository.UpdateAsync(existingCatalogItem);
+=======
+            //Get existing CatalogItem
+            var existingCatalogItem = await _catalogItemRepository.GetByIdAsync(viewModel.Id);
+
+            //Build updated CatalogItem
+            var updatedCatalogItem = existingCatalogItem;
+            updatedCatalogItem.Name = viewModel.Name;
+            updatedCatalogItem.Price = viewModel.Price;
+
+            await _catalogItemRepository.UpdateAsync(updatedCatalogItem);
+>>>>>>> origin/admin-page
         }
     }
 }

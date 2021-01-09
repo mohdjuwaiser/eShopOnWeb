@@ -2,8 +2,12 @@
 using Microsoft.eShopWeb.Web.Extensions;
 using Microsoft.eShopWeb.Web.ViewModels;
 using Microsoft.Extensions.Caching.Memory;
+<<<<<<< HEAD
 using System.Collections.Generic;
 using System.Threading.Tasks;
+=======
+using Microsoft.eShopWeb.Web.Extensions;
+>>>>>>> origin/admin-page
 
 namespace Microsoft.eShopWeb.Web.Services
 {

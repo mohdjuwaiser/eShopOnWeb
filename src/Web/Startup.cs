@@ -113,8 +113,23 @@ namespace Microsoft.eShopWeb.Web
 
             services.AddScoped<ITokenClaimsService, IdentityTokenClaimService>();
 
+<<<<<<< HEAD
             services.AddCoreServices(Configuration);
             services.AddWebServices(Configuration);
+=======
+            services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
+            services.AddScoped<ICatalogViewModelService, CachedCatalogViewModelService>();
+            services.AddScoped<IBasketService, BasketService>();
+            services.AddScoped<IBasketViewModelService, BasketViewModelService>();
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<CatalogViewModelService>();
+            services.AddScoped<ICatalogItemViewModelService, CatalogItemViewModelService>();
+            services.Configure<CatalogSettings>(Configuration);
+            services.AddSingleton<IUriComposer>(new UriComposer(Configuration.Get<CatalogSettings>()));
+            services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
+            services.AddTransient<IEmailSender, EmailSender>();
+>>>>>>> origin/admin-page
 
             // Add memory cache services
             services.AddMemoryCache();
@@ -144,7 +159,7 @@ namespace Microsoft.eShopWeb.Web
                 config.Path = "/allservices";
             });
 
-            
+
             var baseUrlConfig = new BaseUrlConfiguration();
             Configuration.Bind(BaseUrlConfiguration.CONFIG_NAME, baseUrlConfig);
             services.AddScoped<BaseUrlConfiguration>(sp => baseUrlConfig);
@@ -191,7 +206,7 @@ namespace Microsoft.eShopWeb.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseShowAllServicesMiddleware();                                
+                app.UseShowAllServicesMiddleware();
                 app.UseMigrationsEndPoint();
                 app.UseWebAssemblyDebugging();
             }
